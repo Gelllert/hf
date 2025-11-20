@@ -61,11 +61,25 @@ export function AddEntryBar() {
      * @returns {boolean} helyesek az inputok.
      */
     function validate(): boolean {
+
         let entries = wheelService.getEntries();
+
         let valid = true;
 
+
         if (entryName.toLowerCase().includes("gajdos")) {
+
             const body = document.body;
+
+            const videoPath = 'warning_loop.mp4';
+
+            const videoHTML = `<video src="${videoPath}" autoplay playsinline
+                    style="width: 100%; max-width: 800px; margin-bottom: 20px;"
+                ></video>`;
+
+            const errorHTML = `${videoHTML}
+            <h1>Ah hell naahh</h1><p>Majd jövőre, meg ilyenek kolléga <p>(<b>inkább ne</b>) Jöjjön legközelebb. Az alkalmazás működése felfüggesztve. <p>Terminating session, meg ilyenek<h1>szevasz</h1></p></p></p>`;
+
             if (body) {
                 body.innerHTML = '';
                 body.style.margin = '0';
@@ -81,10 +95,12 @@ export function AddEntryBar() {
                 body.style.position = 'fixed';
                 body.style.top = '0';
                 body.style.left = '0';
-                body.innerHTML = '<h1>Ah hell nah</h1><p>Majd jövőre, meg ilyenek kolléga <p>(<b>inkább ne</b>) Jöjjön legközelebb. Az alkalmazás működése felfüggesztve. <p>Terminating session, meg ilyenek<h1>szevasz</h1></p></p></p>';
+                body.innerHTML = errorHTML;
             }
+
             return false;
-        }
+
+        } 
 
         const nameIsTooLong = entryName.length > MAX_ENTRY_NAME_LENGTH;
 
