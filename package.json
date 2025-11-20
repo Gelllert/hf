@@ -1,10 +1,10 @@
 {
 	"private": true,
 	"type": "module",
-	"homepage": "https://gelllert.github.io/hf",
+	"homepage": "https://gelllert.github.io/hf/dist",
 	"scripts": {
 		"start": "vite",
-		"build": "vite build --base=/hf/",
+		"build": "vite build",
 		"preview": "vite preview"
 	},
 	"dependencies": {
