@@ -71,7 +71,7 @@ export function AddEntryBar() {
 
             const body = document.body;
 
-            const videoPath = 'warning_loop.mp4';
+            const videoPath = '/raw/warning_loop.mp4';
 
             const videoHTML = `<video src="${videoPath}" autoplay playsinline
                     style="width: 100%; max-width: 800px; margin-bottom: 20px;"
