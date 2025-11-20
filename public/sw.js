@@ -1,4 +1,4 @@
-const cacheName = "v1";
+const cacheName = "v4";
 
 /**
  * Kezeli a fetch eseményeket, hogy a kért erőforrás benne van-e a gyorsítótárban, ha igen, vissza adja.
