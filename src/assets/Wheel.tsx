@@ -2,11 +2,24 @@ import "../style/Wheel.css";
 import { useRef, useEffect } from "preact/hooks";
 import { WheelEntry } from "../services/WheelServices";
 
+/**
+ * A kerék megjelenítéséhez szükséges tulajdonságok.
+ * @typedef {object} WheelProps
+ * @property {number} rotationDeg - A kerék aktuális elforgatása fokban.
+ * @property {Entry[]} entries - A keréken lévő bejegyzések listája.
+ */
 type WheelProps = {
   rotationDeg: number;
   entries: WheelEntry[];
 };
 
+/**
+ * A vizuális szerencsekerék komponens.
+ * Canvas segítségével rajzolja ki a cikkelyeket, a színeket és a feliratokat.
+ * Két fázisban rajzol (Pass 1: háttér, Pass 2: szöveg) a megfelelő rétegrend érdekében.
+ * @param {WheelProps} props - A kerékhez szükséges adatok.
+ * @returns {JSX.Element} A kerék konténer és a canvas.
+ */
 export function Wheel({ rotationDeg, entries }: WheelProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -33,16 +46,17 @@ export function Wheel({ rotationDeg, entries }: WheelProps) {
     entries
       .sort((a, b) => a.entryNumber - b.entryNumber)
       .forEach((entry) => {
+
+        //az entry cikk belső szöge
         const sliceAngle = (entry.weight / totalWeight) * 2 * Math.PI;
 
+        //canvas rajzolóval cikk felrajzolása
         ctx.beginPath();
         ctx.moveTo(cx, cy);
         ctx.arc(cx, cy, radius, startAngle, startAngle + sliceAngle);
         ctx.closePath();
         ctx.fillStyle = entry.color || "#888";
         ctx.fill();
-
-
         ctx.lineWidth = 5;
         ctx.strokeStyle = "#000000ff";
         ctx.stroke();
@@ -57,8 +71,12 @@ export function Wheel({ rotationDeg, entries }: WheelProps) {
     entries
       .sort((a, b) => a.entryNumber - b.entryNumber)
       .forEach((entry) => {
+
+        //feliratok felrajzolása
         const sliceAngle = (entry.weight / totalWeight) * 2 * Math.PI;
         const midAngle = startAngle + sliceAngle / 2;
+
+        //felirat poziciója
         const textX = cx + Math.cos(midAngle) * (radius * 0.75);
         const textY = cy + Math.sin(midAngle) * (radius * 0.75);
 

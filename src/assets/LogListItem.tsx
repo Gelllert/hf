@@ -1,6 +1,10 @@
 import { LogEntry } from "../services/LogService";
 import { WheelIcon } from "./WheelIcon";
 
+/**
+ * @typedef {object} LogListItemProps
+ * @property {LogEntry} log - Egyetlen napló bejegyzés objektum, amely tartalmazza a pörgetés adatait.
+ */
 type LogListItemProps = {
     log: LogEntry;
 };

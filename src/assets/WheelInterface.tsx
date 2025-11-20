@@ -5,7 +5,12 @@ import { Wheel } from "./Wheel";
 import { logService } from "../services/LogService";
 import "../style/WheelInterface.css";
 
-
+/**
+ * A fő felület komponens, ami összeköti a vizuális kereket (Wheel) a logikával.
+ * Felelős a pörgetési folyamat vezérléséért (state), a forgásszög számításáért, 
+ * az eredmények kezeléséért (nyertes hirdetés, elimináció) és a logolásért.
+ * * @returns {JSX.Element} A kerék interfész teljes UI eleme (kerék + vezérlők).
+ */
 export function WheelInterface() {
     const [rotation, setRotation] = useState(0);
     const [state, setState] = useState<"idle" | "reset" | "spinning" | "finished">("idle");
@@ -20,27 +25,37 @@ export function WheelInterface() {
         return () => wheelService.removeListener(listener);
     }, []);
 
+    /**
+     * A pörgetés és idő kezelését végző aszinkron függvény.
+     */
     async function spin() {
         if (state !== "idle") return;
 
         setState("reset");
         setWinner(null);
 
-
+        
         await new Promise(res => setTimeout(res, 100));
 
-        const result = wheelService.spinWheel(eliminate);
+        const result = wheelService.spinWheel();
 
         if (!result || !result.winningEntry) {
             setState("idle");
             return;
         }
 
+        //Pörgetési szög és animáció számítása:
 
+        //1: Aktuális pozíció normalizálása (hol állunk a körön belül).
         const currentRotationMod = rotation % 360;
-        const distanceToNextCircle = (360 - currentRotationMod) % 360;
-        const extraSpins = Math.floor(Math.random() * 5 + 5) * 360;
 
+        //2: Távolság kiszámítása a következő 0 fokig (hogy ne forogjon visszafelé).
+        const distanceToNextCircle = (360 - currentRotationMod) % 360;
+
+        //3: Extra pörgetések hozzáadása a látvány kedvéért (5-10 kör).
+        const extraSpins = Math.floor(Math.random() * 5 + 5) * 360;
+        
+        //4: Végső szög összeállítása: jelenlegi + kifutás + cél szög + extra körök.
         const finalDeg = rotation + distanceToNextCircle + result.rotation + extraSpins;
 
 

@@ -1,7 +1,16 @@
 import { ButtonIcon } from "./ButtonIcon";
 import "../style/EntryListItem.css";
 
-
+/**
+ * Egyetlen bejegyzés sora a szerkesztő listában.
+ * Megjeleníti a nevet, a súlyt, az esélyszázalékot és a törlés gombot.
+ * * @param {object} props - A komponens tulajdonságai.
+ * @param {Entry} props.entry - A megjelenítendő bejegyzés objektum.
+ * @param {number} props.percent - A bejegyzés nyerési esélye százalékban.
+ * @param {number} props.weight - A bejegyzés súlya.
+ * @param {() => void} props.onDelete - Eseménykezelő a törlés gombra kattintáskor.
+ * @returns {JSX.Element} A lista elem UI reprezentációja.
+ */
 export function EntryListItem({ entry, percent, weight, onDelete }) {
     return (
         <div class="EntryListItem" style={{ "--entry-color": entry.color }}>

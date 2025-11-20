@@ -3,6 +3,11 @@ import { wheelService } from "../services/WheelServices";
 import { EntryListItem } from "./EntryListItem";
 import "../style/EntryList.css";
 
+/**
+ * A kerék bejegyzéseit listázó komponens.
+ * Figyeli a WheelService változásait és megjeleníti az elemeket, valamint a százalékos esélyeiket.
+ * @returns {JSX.Element} A bejegyzések listája.
+ */
 export function EntryList() {
 
     const [entries, setEntries] = useState(wheelService.getEntries());

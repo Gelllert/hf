@@ -7,6 +7,13 @@ import "../style/Main.css";
 
 type ActivePane = "none" | "left" | "right";
 
+/**
+ * Az alkalmazás fő elrendezését (layout) kezelő komponens.
+ * Felelős a reszponzív viselkedésért: figyeli az ablakméretet és annak megfelelően
+ * jeleníti meg a paneleket (Left, Main, Right) egymás mellett vagy külön nézetben.
+ * Kezeli a navigációt a panelek között kis képernyőn.
+ * @returns {JSX.Element} Az alkalmazás fő kerete.
+ */
 export function Main() {
   const [activePane, setActivePane] = useState<ActivePane>("none");
   const [width, setWidth] = useState(window.innerWidth);
@@ -44,6 +51,7 @@ export function Main() {
 
       {/* ------------------- CONTENT ------------------- */}
       <div className="ContentArea">
+        {/* DESKTOP LAYOUT */}
         {isL1 && (
           <>
             <LeftPane />
@@ -52,6 +60,7 @@ export function Main() {
           </>
         )}
 
+        {/* TABLET LAYOUT v1*/}
         {isL2 && activePane === "none" && (
           <>
             <LeftPane />
@@ -59,6 +68,7 @@ export function Main() {
           </>
         )}
 
+        {/* TABLET LAYOUT v2*/}
         {isL2 && activePane === "right" && (
           <>
             <div className="MainContent"><MainPane /></div>
@@ -66,11 +76,15 @@ export function Main() {
           </>
         )}
 
+        {/* PHONE LAYOUT main*/}
         {isL3 && activePane === "none" && (
           <div className="MainContent"><MainPane /></div>
         )}
 
+        {/* PHONE LAYOUT left*/}
         {isL3 && activePane === "left" && <LeftPane onBack={back} />}
+
+        {/* PHONE LAYOUT right*/}
         {isL3 && activePane === "right" && <RightPane onBack={back} />}
       </div>
     </div>

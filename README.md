@@ -11,4 +11,4 @@ Egy szerencse kereket megvalósító alkalmazás kisorsol egy általunk megadott
 
 - A két panel lecsukható ha nincs elég hely (mint a laboron) és így csak a harmadik, középső rész látható, ahol a kerék és hozzá tartozó beállítások gombjai vannak megjelenítve (azaz a fő panel). A kerék fölött egy szerkeszthető címet adhatunk meg, alatta pedig a pörgető gomb nyomásával elindíthatjuk.
 
-https://gelllert.github.io/luckywheel/dist/
+https://gelllert.github.io/hf/dist/

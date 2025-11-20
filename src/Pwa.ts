@@ -1,3 +1,6 @@
+/**
+ * Service worker osztálya.
+ */
 class Pwa {
     #serviceWorkerRegistration?: ServiceWorkerRegistration;
     constructor() {

@@ -1,11 +1,24 @@
 import { WheelEntry } from "../services/WheelServices";
 import { useRef, useEffect } from "preact/hooks";
 
+/**
+ * A miniatűr kerékikon tulajdonságai.
+ * @typedef {object} WheelIconProps
+ * @property {Entry[]} entries - A kerék bejegyzései a kirajzoláshoz.
+ * @property {number} [size] - Az ikon mérete pixelben (alapértelmezett: 40).
+ */
 type WheelIconProps = {
     entries: WheelEntry[];
     size?: number;
 };
 
+
+/**
+ * Egy statikus, miniatűr kerék ikon kirajzolása Canvas segítségével.
+ * A naplóban (LogList) használatos a pörgetéskori állapot megjelenítésére.
+ * @param {WheelIconProps} props - A komponens tulajdonságai.
+ * @returns {JSX.Element} A canvas alapú ikon.
+ */
 export function WheelIcon({ entries, size = 40 }: WheelIconProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 

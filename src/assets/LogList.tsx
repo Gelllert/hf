@@ -4,6 +4,12 @@ import { logService } from "../services/LogService";
 import { useState, useEffect } from "preact/hooks";
 import "../style/LogList.css";
 
+/**
+ * Az alkalmazásban történt pörgetések listáját megjelenítő komponens.
+ * Kezeli a logok betöltését a szolgáltatásból (LogService) és a lista frissítését.
+ * Tartalmazza a logok törlésére szolgáló gombot is.
+ * * @returns {JSX.Element} A Log lista és a törlés gomb konténere.
+ */
 export function LogList() {
     const [logs, setLogs] = useState<LogEntry[]>([]);
 

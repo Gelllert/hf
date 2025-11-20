@@ -56,6 +56,10 @@ export function AddEntryBar() {
         }
     }
 
+    /** 
+     * Inputok validálása, a hibás input mező piroskeretezése.
+     * @returns {boolean} helyesek az inputok.
+     */
     function validate(): boolean {
         let entries = wheelService.getEntries();
         let valid = true;
@@ -101,9 +105,6 @@ export function AddEntryBar() {
                 }}
                 className={nameError ? "error" : ""}
             />
-            {nameError && entryName.length > MAX_ENTRY_NAME_LENGTH && (
-                <span className="NameLimitWarning">Max {MAX_ENTRY_NAME_LENGTH} karakter!</span>
-            )}
 
             <div class="WeightGroup">
                 <span class="WeightLabel">Súly: </span>

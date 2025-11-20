@@ -1,3 +1,12 @@
+/**
+ * Egy kerék cikkely adatszerkezete.
+ * @typedef {object} WheelEntry
+ * @property {string} id - Egyedi azonosító.
+ * @property {string} name - A cikkely felirata.
+ * @property {number} weight - Súlyozás (esély).
+ * @property {string} color - A cikkely színe.
+ * @property {number} entryNumber - Sorszám a rendezéshez.
+ */
 export type WheelEntry = {
     id: string;
     name: string;
@@ -6,6 +15,14 @@ export type WheelEntry = {
     entryNumber: number;
 }
 
+/**
+ * A pörgetés eredményének adatszerkezete.
+ * @typedef {object} SpinResult
+ * @property {string} spinId - A pörgetés egyedi azonosítója.
+ * @property {number} rotation - A végső forgásszög.
+ * @property {WheelEntry[]} entries - A pörgetésben résztvevő elemek.
+ * @property {WheelEntry} winningEntry - A nyertes elem.
+ */
 export type SpinResult = {
     spinId: string;
     rotation: number;
@@ -13,7 +30,10 @@ export type SpinResult = {
     winningEntry: WheelEntry;
 }
 
-
+/**
+ * A kerék adatait és logikáját kezelő központi szolgáltatás.
+ * Singleton, kezeli a bejegyzéseket, a véletlenszám-generálást és a pörgetés logikáját.
+ */
 class WheelService {
     private static instance: WheelService;
     private entries: WheelEntry[] = [];
@@ -24,6 +44,9 @@ class WheelService {
         this.initializeWithDefaultEntries();
     }
 
+    /**
+     * Inicializálja a szolgáltatást alapértelmezett adatokkal.
+     */
     private initializeWithDefaultEntries(): void {
         const defaultEntries = [
             { name: "Zsiguli", weight: 3, color: "#da2222ff" },
@@ -46,10 +69,18 @@ class WheelService {
         this.notifyListeners();
     }
 
+    /**
+     * Feliratkozás az adatváltozásokra.
+     * @param listener - Callback függvény.
+     */
     public addListener(listener: () => void): void {
         this.listeners.push(listener);
     }
 
+    /**
+     * Leiratkozás az adatváltozásokról.
+     * @param listener - Callback függvény.
+     */
     public removeListener(listener: () => void): void {
         this.listeners = this.listeners.filter(l => l !== listener);
     }
@@ -59,6 +90,10 @@ class WheelService {
     }
 
 
+    /**
+     * Singleton példány lekérése.
+     * @returns {WheelService} Az egyetlen példány.
+     */
     public static getInstance(): WheelService {
         if (!WheelService.instance) {
             WheelService.instance = new WheelService();
@@ -74,12 +109,13 @@ class WheelService {
         return Date.now().toString(36) + "-" + Math.random().toString(36).substring(2, 8);
     }
 
-    public addEntryType(entry: WheelEntry): void {
-        this.entries.push(entry);
-        this.notifyListeners();
-    }
-
-    public addEntry(name: string, weight: number, color?: string): void {
+    /**
+     * Hozzáad egy új elemet a kerékhez.
+     * @param name - Az elem neve.
+     * @param weight - Az elem súlya.
+     * @param color - Az elem színe.
+     */
+    public addEntry(name: string, weight: number, color: string): void {
         const entry: WheelEntry = {
             id: this.generateId(),
             name,
@@ -91,37 +127,46 @@ class WheelService {
         this.notifyListeners();
     }
 
+    /**
+     * Törli az összes elemet a kerékről.
+     */
     public clearEntries(): void {
         this.entries = [];
         this.notifyListeners();
     }
 
+    /**
+     * Lekéri az aktuális elemek listáját.
+     * @returns {WheelEntry[]} Az elemek tömbje.
+     */
     public getEntries(): WheelEntry[] {
         return this.entries;
     }
 
+    /**
+     * Eltávolít egy elemet ID alapján.
+     * @param id - A törlendő elem azonosítója.
+     */
     public removeEntry(id: string): void {
         this.entries = this.entries.filter(e => e.id !== id);
         this.notifyListeners();
     }
 
+    /**
+     * Eltávolít a győztes elemet ID alapján, shifteli a id-kat.
+     * @param id - A törlendő elem azonosítója.
+     */
     public removeWinnerEntry(id: string): void {
         this.entries = this.entries.filter(e => e.id !== id);
         this.entries.forEach((e, i) => e.entryNumber = i);
         this.notifyListeners();
     }
 
-    editEntry(id: string, name?: string, weight?: number, color?: string): void {
-        const index = this.entries.findIndex(e => e.id === id);
-        if (index !== -1) {
-            if (name !== undefined) this.entries[index].name = name;
-            if (weight !== undefined) this.entries[index].weight = weight;
-            if (color !== undefined) this.entries[index].color = color;
-        }
-        this.notifyListeners();
-    }
-
-    public spinWheel(removeWinner: boolean = false): SpinResult | null {
+    /**
+     * Végrehajtja a pörgetés logikáját (nyertes sorsolása, szög számítása).
+     * @returns {SpinResult | null} A pörgetés eredménye, vagy null ha üres a kerék.
+     */
+    public spinWheel(): SpinResult | null {
         if (this.entries.length === 0) return null;
         const totalWeight = this.entries.reduce((s, e) => s + e.weight, 0);
         if (totalWeight <= 0) return null;
@@ -133,6 +178,7 @@ class WheelService {
         let winningEntry: WheelEntry | null = null;
         let winningDeg = 0;
 
+        //megtalálni a súlyok alapján a nyertest
         for (const entry of sorted) {
             const endWeight = startWeight + entry.weight;
 
@@ -146,6 +192,7 @@ class WheelService {
             startWeight = endWeight;
         }
 
+        //ha épp 0-nál áll meg, az első nyert
         if (!winningEntry) {
             winningEntry = sorted[0];
         }
