@@ -18,6 +18,3 @@ async function impl(e) {
 }
 self.addEventListener("fetch", e => e.respondWith(impl(e))); 
 
-self.addEventListener("install", () => {
-    self.skipWaiting();
-});
