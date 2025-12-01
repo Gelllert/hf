@@ -1,4 +1,4 @@
-const cacheName = "cache_final3";
+const cacheName = "cache_final4";
 const expectedCaches = [cacheName];
 
 async function impl(e) {

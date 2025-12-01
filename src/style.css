@@ -57,14 +57,15 @@ section {
 }
 
 @media (max-width: 639px) {
-	#app {
-		margin: 2rem;
-	}
-	section {
-		margin-top: 5rem;
-		grid-template-columns: 1fr;
-		row-gap: 1rem;
-	}
+    #app {
+        margin: auto; 
+        width: 100%;
+    }
+    section {
+        margin-top: 5rem;
+        grid-template-columns: 1fr;
+        row-gap: 1rem;
+    }
 }
 
 @media (prefers-color-scheme: dark) {
