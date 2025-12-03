@@ -11,6 +11,11 @@
     background: rgba(255, 255, 255, 0.04);
     border-radius: 4px;
     margin-bottom: 6px;
+    min-width: 0; 
+}
+
+.EntryListItem > * {
+    min-width: 0;
 }
 
 .EntryName {
@@ -26,7 +31,6 @@
     display: flex;
     text-align: center;
     padding: 0 1.5rem;
-    border-left: 1px dashed rgba(255, 255, 255, 0.35);
 }
 
 .EntryButtons {

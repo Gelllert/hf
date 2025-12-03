@@ -34,9 +34,9 @@
 
 .pane {
     width: 500px;
-    min-width: 500px;
+    max-width: 500px;
     border: 1px solid #ccc;
-    position: relative;
+    box-sizing: border-box;
 }
 
 .back-button-top {
@@ -133,6 +133,13 @@
 }
 
 @media (max-width: 1100px) {
+
+    .ContentArea {
+        display: flex;
+        justify-content: center;   
+        align-items: flex-start;
+        padding: 0 12px;
+    }
     .container {
         position: relative;
         overflow: hidden;

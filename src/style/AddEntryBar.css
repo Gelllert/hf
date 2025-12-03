@@ -5,7 +5,12 @@
     padding: 8px;
     align-items: center;
     outline: white 1px solid;
+    min-width: 0;
+}
 
+.AddEntryBar > * {
+    min-width: 0;
+    overflow: hidden;
 }
 
 .AddEntryBar input[type="text"] {
