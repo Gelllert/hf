@@ -24,17 +24,18 @@
     display: flex;
     gap: 16px;
     flex: 1;
+    justify-content: center; 
+    align-items: center;
 }
-
 .MainContent {
-    min-width: 600px;
+    min-width: unset; 
     flex-grow: 1;
     border: 1px solid #ddd;
 }
 
 .pane {
-    width: 500px;
-    min-width: 500px;
+    width: 100%;
+    min-width: unset;
     border: 1px solid #ccc;
     position: relative;
 }
@@ -140,7 +141,7 @@
 
     .main {
         z-index: 1;
-        width: 100%;
+        width: 100%; 
     }
 
     .left-pane,
