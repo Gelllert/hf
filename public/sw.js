@@ -1,4 +1,4 @@
-const cacheName = "cache_v9";
+const cacheName = "cache_v10";
 const expectedCaches = [cacheName];
 
 async function impl(e) {

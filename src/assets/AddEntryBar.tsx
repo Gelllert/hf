@@ -135,7 +135,7 @@ export function AddEntryBar() {
 
             <input
                 type="text"
-                placeholder="Name"
+                placeholder="Name... (max 25 characters)"
                 value={entryName}
                 onInput={(e) => {
                     setName(e.currentTarget.value);
@@ -145,7 +145,7 @@ export function AddEntryBar() {
             />
 
             <div class="WeightGroup">
-                <span class="WeightLabel">Súly: </span>
+                <span class="WeightLabel">Weight: </span>
                 <input
                     type="number"
                     min={1}
@@ -156,8 +156,8 @@ export function AddEntryBar() {
                     }}
                     className={weightError ? "error" : ""}
                 />
+                <span class="Explanation">( % = (SUM(w) / input) * 0.01 )</span>
             </div>
-
             <div className="ColorGroup">
                 <input
                     type="color"

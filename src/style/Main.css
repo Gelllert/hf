@@ -30,6 +30,8 @@
 .pane,
 .MainContent {
     height: 100%;
+    width: 500px;
+    max-width: 500px;
     min-height: 0;
     overflow-y: auto;       
     box-sizing: border-box;
@@ -42,8 +44,6 @@
 }
 
 .pane {
-    width: 500px;
-    max-width: 500px;
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
@@ -74,4 +74,11 @@
     display: none;
     gap: 0.5rem;
     padding: 0.5rem;
+}
+
+@media (max-width: 500px) {
+    .pane,
+    .MainContent {
+        width: 100%;
+    }
 }

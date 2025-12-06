@@ -24,8 +24,8 @@ export function Main() {
     return () => window.removeEventListener("resize", fn);
   }, []);
 
-  const isL1 = width >= 1600;
-  const isL2 = width < 1600 && width >= 1100;
+  const isL1 = width >= 1500;
+  const isL2 = width < 1500 && width >= 1100;
   const isL3 = width < 1100;
 
   const back = () => setActivePane("none");
