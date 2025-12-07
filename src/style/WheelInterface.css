@@ -42,27 +42,6 @@
     height: 16px;
 }
 
-button.ButtonIcon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-
-    background-color: #444;
-    color: white;
-    border: 2px solid #fff;
-    border-radius: 50px;
-    padding: 12px 24px;
-
-    font-size: 1.1rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
 button.ButtonIcon:hover {
     background-color: #666;
     transform: translateY(-1px);

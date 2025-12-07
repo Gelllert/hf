@@ -48,13 +48,6 @@
     box-sizing: border-box;
 }
 
-.back-button-top {
-    position: absolute;
-    top: 6px;
-    left: 6px;
-    z-index: 5;
-}
-
 .container {
     position: relative;
     width: 100%;

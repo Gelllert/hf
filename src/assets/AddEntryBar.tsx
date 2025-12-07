@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "preact/hooks";
 import { wheelService } from "../services/WheelServices";
 import { ButtonIcon } from "./ButtonIcon";
 import "../style/AddEntryBar.css";
