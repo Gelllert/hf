@@ -11,10 +11,12 @@ import "../style/EntryList.css";
 export function EntryList() {
 
     const [entries, setEntries] = useState(wheelService.getEntries());
+    const [isSpinning, setIsSpinning] = useState(wheelService.getIsSpinning());
 
     useEffect(() => {
         const listener = () => {
             setEntries([...wheelService.getEntries()]);
+            setIsSpinning(wheelService.getIsSpinning());
         };
 
         wheelService.addListener(listener);
@@ -38,7 +40,7 @@ export function EntryList() {
                         percent={percent}
                         weight={entry.weight}
                         onDelete={() => wheelService.removeEntry(entry.id)}
-
+                        isSpinning={isSpinning}
                     />
                 );
             })}

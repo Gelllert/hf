@@ -26,6 +26,11 @@
     transform: translateY(1px);
 }
 
+.ButtonIcon:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
 
 
 

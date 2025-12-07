@@ -11,7 +11,7 @@ import "../style/EntryListItem.css";
  * @param {() => void} props.onDelete - Eseménykezelő a törlés gombra kattintáskor.
  * @returns {JSX.Element} A lista elem UI reprezentációja.
  */
-export function EntryListItem({ entry, percent, weight, onDelete }) {
+export function EntryListItem({ entry, percent, weight, onDelete, isSpinning }) {
     return (
         <div class="EntryListItem" style={{ "--entry-color": entry.color }}>
 
@@ -25,7 +25,7 @@ export function EntryListItem({ entry, percent, weight, onDelete }) {
 
 
             <div class="EntryButtons">
-                <ButtonIcon icon="delete" onClick={onDelete} variant="delete"/>
+                <ButtonIcon icon="delete" onClick={onDelete} variant="delete" disabled={isSpinning}/>
             </div>
 
         </div>

@@ -33,7 +33,7 @@ export function WheelInterface() {
 
         setState("reset");
         setWinner(null);
-
+        wheelService.setIsSpinning(true);
         
         await new Promise(res => setTimeout(res, 100));
 
@@ -41,6 +41,7 @@ export function WheelInterface() {
 
         if (!result || !result.winningEntry) {
             setState("idle");
+            wheelService.setIsSpinning(false);
             return;
         }
 
@@ -74,12 +75,14 @@ export function WheelInterface() {
 
         setWinner(result.winningEntry);
         setState("finished");
+        wheelService.setIsSpinning(false);
     }
 
     function reset() {
         if (state === "spinning") return;
         setWinner(null);
         setState("idle");
+        wheelService.setIsSpinning(false);
     }
 
     return (

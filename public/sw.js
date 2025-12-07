@@ -1,4 +1,4 @@
-const cacheName = "website-cache";
+const cacheName = "webcache";
 const expectedCaches = [cacheName];
 
 async function impl(e) {

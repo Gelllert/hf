@@ -38,9 +38,9 @@ class WheelService {
     private static instance: WheelService;
     private entries: WheelEntry[] = [];
     private listeners: (() => void)[] = [];
+    private isSpinning: boolean = false;
 
     private constructor() {
-
         this.initializeWithDefaultEntries();
     }
 
@@ -88,7 +88,6 @@ class WheelService {
     private notifyListeners(): void {
         this.listeners.forEach((nf) => nf());
     }
-
 
     /**
      * Singleton példány lekérése.
@@ -159,6 +158,23 @@ class WheelService {
     public removeWinnerEntry(id: string): void {
         this.entries = this.entries.filter(e => e.id !== id);
         this.entries.forEach((e, i) => e.entryNumber = i);
+        this.notifyListeners();
+    }
+
+    /**
+     * Visszaadja a pörgetés állapotát.
+     * @returns {boolean} True, ha éppen pörgetés közben vagyunk.
+     */
+    public getIsSpinning(): boolean {
+        return this.isSpinning;
+    }
+
+    /**
+     * Beállítja a pörgetés állapotát.
+     * @param spinning - Az új állapot.
+     */
+    public setIsSpinning(spinning: boolean): void {
+        this.isSpinning = spinning;
         this.notifyListeners();
     }
 

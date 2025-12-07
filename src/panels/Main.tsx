@@ -36,22 +36,26 @@ export function Main() {
       {/* -------------------------------------- HEADER -------------------------------------- */}
       <div className="Header">
         <div className="TopButtons">
-          {isL2 && activePane === "none" && (
-            <ButtonIcon icon="bar_chart" label="Stats" onClick={() => setActivePane("right")} variant="nav"/>
-          )}
-
           {isL3 && activePane === "none" && (
             <>
-              <ButtonIcon icon="inventory" label="Items" onClick={() => setActivePane("left")} variant="nav"/>
-              <ButtonIcon icon="bar_chart" label="Stats" onClick={() => setActivePane("right")} variant="nav"/>
+              <ButtonIcon icon="inventory" label="Items" onClick={() => setActivePane("left")} variant="nav" />
+              <ButtonIcon icon="bar_chart" label="Stats" onClick={() => setActivePane("right")} variant="nav" />
             </>
           )}
-          {isL3  && activePane !== "none" && (
-            <ButtonIcon icon="arrow_back" label="Back" onClick={back} variant="nav"/>
+
+          {isL3 && activePane !== "none" && (
+            <ButtonIcon icon="arrow_back" label="Back" onClick={back} variant="nav" />
           )}
-          {isL2  && activePane === "right" && (
-            <ButtonIcon icon="arrow_back" label="Back" onClick={back} variant="nav"/>
+
+          {isL2 && activePane === "right" && (
+            <ButtonIcon icon="arrow_back" label="Back" onClick={back} variant="nav" />
           )}
+
+          {isL2 && activePane !== "right" && (
+            <ButtonIcon icon="bar_chart" label="Stats" onClick={() => setActivePane("right")} variant="nav" />
+          )}
+
+
 
         </div>
       </div>
@@ -89,10 +93,10 @@ export function Main() {
         )}
 
         {/* PHONE LAYOUT left*/}
-        {isL3 && activePane === "left" && <LeftPane/>}
+        {isL3 && activePane === "left" && <LeftPane />}
 
         {/* PHONE LAYOUT right*/}
-        {isL3 && activePane === "right" && <RightPane/>}
+        {isL3 && activePane === "right" && <RightPane />}
       </div>
     </div>
   );

@@ -24,10 +24,12 @@ export function AddEntryBar() {
     let [weightError, setWeightError] = useState(false);
     let [colorError, setColorError] = useState(false);
     let [currentEntries, setCurrentEntries] = useState(wheelService.getEntries());
+    let [isSpinning, setIsSpinning] = useState(wheelService.getIsSpinning());
 
     useEffect(() => {
         const handleEntriesChange = () => {
             setCurrentEntries(wheelService.getEntries());
+            setIsSpinning(wheelService.getIsSpinning());
         };
 
         wheelService.addListener(handleEntriesChange);
@@ -189,7 +191,7 @@ export function AddEntryBar() {
                 </div>
             </div>
             {showAddButton ? (
-                <ButtonIcon icon="add" label="Add" onClick={onAddEntryClick} variant="add" />
+                <ButtonIcon icon="add" label="Add" onClick={onAddEntryClick} variant="add" disabled={isSpinning}/>
             ) : (
                 <span className="EntryLimitReached">MAX ({MAX_WHEEL_ENTRIES})</span>
             )}
