@@ -4,8 +4,9 @@ import './style.css';
 import "./Pwa"
 
 /**
- * 
- * @returns Fő program, ami tartalmazza a 3 rész lapot.
+ * A LuckyWheel alkalmazás fő komponense.
+ * Megjeleníti az alkalmazás fő elrendezését (3 panel: bal, középső, jobb).
+ * @returns {JSX.Element} Az alkalmazás gyökér komponense, amely tartalmazza a Main panelt.
  */
 export function App() {
   return <Main />;

@@ -6,6 +6,11 @@ import "../style/AddEntryBar.css";
 const MAX_WHEEL_ENTRIES = 10;
 const MAX_ENTRY_NAME_LENGTH = 25;
 
+/**
+ * Véletlenszerű szín generálása hexadecimális formátumban.
+ * Az alfa csatorna értéke mindig 'ff' (teljes opacitás).
+ * @returns {string} Egy '#' karakterrel kezdődő hexadecimális szín (pl. '#a1b2c3ff').
+ */
 const getRandomColor = () => {
     return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0') + 'ff';
 };

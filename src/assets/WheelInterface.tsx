@@ -78,6 +78,11 @@ export function WheelInterface() {
         wheelService.setIsSpinning(false);
     }
 
+    /**
+     * Alaphelyzetbe állítja a pörgetéshez tartozó UI elemet.
+     * Letiltja a nyertes megjelenítést és visszaállítja az idle állapotot.
+     * Csak akkor működik, ha a kerék nem forog (state !== "spinning").
+     */
     function reset() {
         if (state === "spinning") return;
         setWinner(null);
